@@ -1,4 +1,5 @@
 <?php
+require_once 'Config.php';
 
 class View  
 {
@@ -11,13 +12,14 @@ class View
 
     public function generate($data){
         $content = $this->generateFile($this->file,$data);
-        $view = $this->generateFile('view/Base.php',array('title' => $this->title,'content' => $content));
+        $webRoot = Config::get("webRoot","/");
+        $view = $this->generateFile('view/Base.php',array('title' => $this->title,'content' => $content,'webRoot'=>$webRoot));
 
-        echo $vue;
+        echo $view;
     }
 
     private function generateFile($file,$data){
-        if (file_exist($file)) {
+        if (file_exists($file)) {
             extract($data);
             ob_start();
             require $file;
@@ -26,6 +28,10 @@ class View
             throw new Exception("File $file not found in View.php");
         }
     }
+
+    private function clean($valeur) {
+        return htmlspecialchars($valeur, ENT_QUOTES, 'UTF-8', false);
+      }
 }
 
 

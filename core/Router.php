@@ -1,5 +1,5 @@
 <?php
-require_once 'controller/Request.php';
+require_once 'core/Request.php';
 require_once 'view/View.php';
 class Router  
 {
@@ -8,9 +8,9 @@ class Router
             $request = new Request(array_merge($_GET,$_POST));
             $controler = $this->createController($request);
             $action = $this->createAction($request);
-            $controler->exevuteAction($action);
+            $controler->execAction($action);
         } catch (Exception $e) {
-            echo $e;
+            var_dump($e);
         }
     }
 
@@ -21,11 +21,12 @@ class Router
         }
         $fileControler = "controller/".$controler.".php";
         if (file_exists($fileControler)) {
+            require($fileControler);
             $controler = new $controler();
             $controler->SetRequest($request);
             return $controler;
         }else
-        throw new Exception("file $fileControler not found in Router.php");
+        throw new Exception("file $fileControler not found");
     }
     private function createAction(Request $request){
         $action = "index";

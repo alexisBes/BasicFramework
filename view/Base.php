@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?= title ?></title>
+    <base href="<?= $webRoot ?>" >
+    <title><?= $title ?></title>
 </head>
 <body>
     <?= $content ?>
