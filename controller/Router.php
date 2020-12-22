@@ -20,7 +20,7 @@ class Router
             $controler = ucfirst(strtolower($request->getParameter('controller')));
         }
         $fileControler = "controller/".$controler.".php";
-        if (file_exist($fileControler)) {
+        if (file_exists($fileControler)) {
             $controler = new $controler();
             $controler->SetRequest($request);
             return $controler;
