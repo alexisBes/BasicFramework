@@ -15,7 +15,7 @@ abstract class Controler
             $this->action = $action;
             $this->{$this->action}();
         }else {
-            $classControler = $this->get_class();
+            $classControler =get_class($this);
             throw new Exception("Action $action cannot be found in $classControler");
         }
     }
@@ -23,7 +23,7 @@ abstract class Controler
     public abstract function index();
 
     protected function generateView($dataView){
-        $class = get_class();
+        $class = get_class($this);
         $view= new View($this->action,$class);
         $view->generate($dataView);
     }
