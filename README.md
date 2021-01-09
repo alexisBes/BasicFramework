@@ -8,9 +8,9 @@ Add a dev.ini file in the root folder of The framework with
 The file have to looks like this :
 ```ini
 [BD]
-info : 'mysql:host=localhost;dbname=name_of_my_database;charset=utf8'
-user : ;username
-password : ;password
+info = 'mysql:host=localhost;dbname=name_of_my_database;charset=utf8'
+user = ;username
+password = ;password
 ```
 
 ### Production
